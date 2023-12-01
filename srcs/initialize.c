@@ -6,20 +6,11 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:22:06 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 15:57:23 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/01 22:13:56 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-size_t	get_current_time(void)
-{
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
 
 void	init_input(t_philo *philo, char **argv)
 {
@@ -75,5 +66,5 @@ void	initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program,
 			philo[i].r_fork = &forks[i - 1];
 		i++;
 	}
-	print_philos(philo);
+	// print_philos(philo);
 }

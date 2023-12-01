@@ -6,12 +6,11 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:28 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 15:05:58 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/01 22:16:14 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
 
 int	are_letters(char *str, int mode)
 {
@@ -92,6 +91,7 @@ int	main(int argc, char **argv)
 
 	check_input(argc, argv);
 	initializations(philo, forks, &program, argv);
-	// create_thread(&program, forks);
+	create_threads(&program);
+	free_all(&program, forks);
 	return (0);
 }
