@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:44 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 22:16:03 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/01 23:32:09 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ typedef struct s_philo
 	int				id;
 	int				eating;
 	int				meals_eaten;
-	size_t			last_meal;
-	size_t			time_to_die;
+	long long		last_meal;
+	long long		time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
-	size_t			start_time;
+	long long		start_time;
 	int				num_of_philos;
 	int				num_times_to_eat;
 	int				*dead;
@@ -50,16 +50,16 @@ typedef struct s_program
 	t_philo			*philos;
 }	t_program;
 
-size_t	get_current_time(void);
-void	initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program, char **argv);
-void	create_threads(t_program *program);
-void	print_philos(t_philo *philo);
-void	sleepy(t_philo *philo);
-void	thinking(t_philo *philo);
-void	eating(t_philo *philo);
-int		ft_usleep(size_t milliseconds);
-int		dead(t_philo *philo);
-void	*observe(void *pointer);
-void	free_all(t_program *program, pthread_mutex_t *forks);
+long long	get_current_time(void);
+void		initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program, char **argv);
+int			create_threads(t_program *program, pthread_mutex_t *forks);
+void		print_philos(t_philo *philo);
+void		sleepy(t_philo *philo);
+void		thinking(t_philo *philo);
+void		eating(t_philo *philo);
+int			ft_usleep(size_t milliseconds);
+int			dead(t_philo *philo);
+void		*observe(void *pointer);
+void		free_all(t_program *program, pthread_mutex_t *forks);
 
 #endif

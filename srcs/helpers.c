@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:56:41 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 22:15:59 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/01 23:33:08 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	print_philos(t_philo *philo)
 		printf("philo[%i]->id = %i\n", i, philo[i].id);
 		printf("philo[%i]->eating = %i\n", i, philo[i].eating);
 		printf("philo[%i]->meals_eaten = %i\n", i, philo[i].meals_eaten);
-		printf("philo[%i]->time_to_die = %zu\n", i, philo[i].time_to_die);
+		printf("philo[%i]->time_to_die = %lld\n", i, philo[i].time_to_die);
 		printf("philo[%i]->time_to_eat = %zu\n", i, philo[i].time_to_eat);
 		printf("philo[%i]->time_to_sleep = %zu\n", i, philo[i].time_to_sleep);
 		printf("philo[%i]->num_of_times_to_eat = %d\n", i, philo[i].num_times_to_eat);
-		printf("philo[%i]->start_time = %zu\n", i, philo[i].start_time);
-		printf("philo[%i]->last_meal = %zu\n", i, philo[i].last_meal);
+		printf("philo[%i]->start_time = %lld\n", i, philo[i].start_time);
+		printf("philo[%i]->last_meal = %lld\n", i, philo[i].last_meal);
 		printf("philo[%i]->write_lock = %p\n", i, philo[i].write_lock);
 		printf("philo[%i]->dead_lock = %p\n", i, philo[i].dead_lock);
 		printf("philo[%i]->meal_lock = %p\n", i, philo[i].meal_lock);
@@ -48,12 +48,12 @@ int	ft_usleep(size_t milliseconds)
 	return (0);
 }
 
-size_t	get_current_time(void)
+long long	get_current_time(void)
 {
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
+		return (write(2, "gettimeofday() error\n", 22), -1);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 

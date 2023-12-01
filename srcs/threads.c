@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:46:27 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 22:11:08 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/01 23:03:30 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,28 @@ void	*routine(void *pointer)
 	return (pointer);
 }
 
-void	create_threads(t_program *program)			// , pthread_mutex_t *forks
+int	create_threads(t_program *program, pthread_mutex_t *forks)
 {
 	pthread_t	observer;
 	int			i;
 
 	i = 0;
-	pthread_create(&observer, NULL, &observe, program->philos);
+	if (pthread_create(&observer, NULL, &observe, program->philos) != 0)
+		free_all(program, forks);
 	while (i < program->philos[0].num_of_philos)
 	{
-		pthread_create(&program->philos[i].thread, NULL, &routine, &program->philos[i]);
+		if (pthread_create(&program->philos[i].thread, NULL, &routine, &program->philos[i]) != 0)
+			free_all(program, forks);
 		i++;
 	}
-	pthread_join(observer, NULL);
+	if (pthread_join(observer, NULL) != 0)
+		free_all(program, forks);
 	i = 0;
 	while (i < program->philos[0].num_of_philos)
 	{
-		pthread_join(program->philos[i].thread, NULL);
+		if (pthread_join(program->philos[i].thread, NULL) != 0)
+			free_all(program, forks);
 		i++;
 	}
+	return (0);
 }

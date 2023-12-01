@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:28 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 22:16:14 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/01 22:57:25 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main(int argc, char **argv)
 
 	check_input(argc, argv);
 	initializations(philo, forks, &program, argv);
-	create_threads(&program);
+	create_threads(&program, forks);
 	free_all(&program, forks);
 	return (0);
 }
