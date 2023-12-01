@@ -6,7 +6,7 @@
 #    By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 01:41:47 by oscarmathot       #+#    #+#              #
-#    Updated: 2023/12/01 15:05:56 by oscarmathot      ###   ########.fr        #
+#    Updated: 2023/12/01 16:28:48 by oscarmathot      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS	:= $(addprefix $(SUBDIR),$(SRC))
 OBJ 	:= $(SRCS:.c=.o)
 LIBFT_A	:= lib/libft/libft.a
 CMP		:= gcc
-FLAGS 	:= -Werror -Wall -Wextra -I lib
+FLAGS 	:= -Werror -Wall -Wextra -pthread -I lib
 
 # ifeq ($(wildcard $(/opt/homebrew/opt/readline/include)),)
 # 	FLAGS = -Werror -Wall -Wextra -I lib -I/opt/homebrew/opt/readline/include

@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:22:06 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 15:06:08 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/01 15:57:23 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,29 @@ void	init_input(t_philo *philo, char **argv)
 		philo->num_times_to_eat = -1;
 }
 
-void	initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program, char **argv)
+void	initialize_program_n_forks(t_philo *philo, t_program *program, char **argv, pthread_mutex_t *forks)
 {
 	int	i;
 
+	i = 0;
 	program->dead_flag = 0;
 	program->philos = philo;
 	pthread_mutex_init(&program->write_lock, NULL);
 	pthread_mutex_init(&program->dead_lock, NULL);
 	pthread_mutex_init(&program->meal_lock, NULL);
-	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
 		pthread_mutex_init(&forks[i], NULL);
 		i++;
 	}
+}
+
+void	initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program, char **argv)
+{
+	int	i;
+
 	i = 0;
+	initialize_program_n_forks(philo, program, argv, forks);
 	while (i < ft_atoi(argv[1]))
 	{
 		philo[i].id = i + 1;
