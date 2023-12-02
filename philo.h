@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:44 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 18:59:40 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 22:16:50 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_program
 	t_philo			*philos;
 }	t_program;
 
-long long	get_current_time(void);
+int			get_current_time(void);
 void		initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program, char **argv);
 int			create_threads(t_program *program, pthread_mutex_t *forks);
 void		print_philos(t_philo *philo);

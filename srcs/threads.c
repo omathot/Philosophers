@@ -6,11 +6,13 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:46:27 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 00:33:47 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 22:10:45 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void	*monitor(void *pointer);
 
 int	dead(t_philo *philo)
 {
@@ -43,7 +45,7 @@ int	create_threads(t_program *program, pthread_mutex_t *forks)
 	int			i;
 
 	i = 0;
-	if (pthread_create(&observer, NULL, &observe, program->philos) != 0)
+	if (pthread_create(&observer, NULL, &monitor, program->philos) != 0)
 		free_all(program, forks);
 	while (i < program->philos[0].num_of_philos)
 	{

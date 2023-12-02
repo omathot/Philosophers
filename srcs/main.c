@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:28 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 22:57:25 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 22:06:46 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	check_input(int argc, char **argv)
 		}
 		else
 		{
-			puts("+");
 			if (are_letters(argv[i], 0) == 1)
 			{
 				printf("found letters or incorect value, should only be numbers in input, only last input can be 0\n");

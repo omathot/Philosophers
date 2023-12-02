@@ -6,36 +6,38 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 21:49:49 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 19:00:48 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 22:18:38 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	philo_died(t_philo *philo)
+int	philo_died(t_philo *philo, size_t time_to_die)
 {
 	pthread_mutex_lock(philo->meal_lock);
-	if ((get_current_time() - philo->last_meal) >= (philo->time_to_die) && philo->eating == 0)
+	if (get_current_time() - philo->last_meal >= time_to_die
+		&& philo->eating == 0)
 		return (pthread_mutex_unlock(philo->meal_lock), 1);
 	pthread_mutex_unlock(philo->meal_lock);
 	return (0);
 }
 
-int	check_death(t_philo *philo)
+int	check_death(t_philo *philos)
 {
 	int	i;
 
 	i = 0;
-	while (i < philo[0].num_of_philos)
+	while (i < philos[0].num_of_philos)
 	{
-		if (philo_died(&philo[i]) == 1)
+		if (philo_died(&philos[i], philos[i].time_to_die))
 		{
-			print_message("died", &philo[i], philo[i].id);
-			pthread_mutex_lock(philo[i].dead_lock);
-			*philo->dead = 1;
-			pthread_mutex_unlock(philo[i].dead_lock);
+			print_message("died", &philos[i], philos[i].id);
+			pthread_mutex_lock(philos[0].dead_lock);
+			*philos->dead = 1;
+			pthread_mutex_unlock(philos[0].dead_lock);
 			return (1);
 		}
+		i++;
 	}
 	return (0);
 }
@@ -47,7 +49,7 @@ int	full(t_philo *philo)
 
 	i = 0;
 	ate = 0;
-	if (philo->num_times_to_eat == -1)
+	if (philo[0].num_times_to_eat == -1)
 		return (0);
 	while (i < philo[0].num_of_philos)
 	{
@@ -57,7 +59,7 @@ int	full(t_philo *philo)
 		pthread_mutex_unlock(philo[i].meal_lock);
 		i++;
 	}
-	if (ate == philo[i].num_of_philos)
+	if (ate == philo[0].num_of_philos)
 	{
 		pthread_mutex_lock(philo[0].dead_lock);
 		*philo->dead = 1;
@@ -67,15 +69,13 @@ int	full(t_philo *philo)
 	return (0);
 }
 
-void	*observe(void *pointer)
+void	*monitor(void *pointer)
 {
-	t_philo *philo;
+	t_philo	*philos;
 
-	philo = (t_philo *)pointer;
+	philos = (t_philo *)pointer;
 	while (1)
-	{
-		if (check_death(philo) == 1 || full(philo) == 1)
+		if (check_death(philos) == 1 || full(philos) == 1)
 			break ;
-	}
 	return (pointer);
 }

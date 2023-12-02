@@ -6,13 +6,13 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:22:06 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 18:54:53 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 21:55:24 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	init_input(t_philo *philo, char **argv)
+void	init_argv(t_philo *philo, char **argv)
 {
 	philo->time_to_die = ft_atoi(argv[2]);
 	philo->time_to_eat = ft_atoi(argv[3]);
@@ -52,7 +52,7 @@ void	initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program,
 		philo[i].id = i + 1;
 		philo[i].eating = 0;
 		philo[i].meals_eaten = 0;
-		init_input(&philo[i], argv);
+		init_argv(&philo[i], argv);
 		philo[i].start_time = get_current_time();
 		philo[i].last_meal = get_current_time();
 		philo[i].write_lock = &program->write_lock;
@@ -66,5 +66,4 @@ void	initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program,
 			philo[i].r_fork = &forks[i - 1];
 		i++;
 	}
-	// print_ph
 }

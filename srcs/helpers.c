@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:56:41 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 19:00:36 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 22:15:49 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_usleep(size_t milliseconds)
 	return (0);
 }
 
-long long	get_current_time(void)
+int	get_current_time(void)
 {
 	struct timeval	time;
 
