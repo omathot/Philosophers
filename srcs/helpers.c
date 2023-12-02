@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:56:41 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 23:33:08 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 19:00:36 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	print_philos(t_philo *philo)
 		printf("philo[%i]->id = %i\n", i, philo[i].id);
 		printf("philo[%i]->eating = %i\n", i, philo[i].eating);
 		printf("philo[%i]->meals_eaten = %i\n", i, philo[i].meals_eaten);
-		printf("philo[%i]->time_to_die = %lld\n", i, philo[i].time_to_die);
+		printf("philo[%i]->time_to_die = %zu\n", i, philo[i].time_to_die);
 		printf("philo[%i]->time_to_eat = %zu\n", i, philo[i].time_to_eat);
 		printf("philo[%i]->time_to_sleep = %zu\n", i, philo[i].time_to_sleep);
 		printf("philo[%i]->num_of_times_to_eat = %d\n", i, philo[i].num_times_to_eat);
 		printf("philo[%i]->start_time = %lld\n", i, philo[i].start_time);
-		printf("philo[%i]->last_meal = %lld\n", i, philo[i].last_meal);
+		printf("philo[%i]->last_meal = %zu\n", i, philo[i].last_meal);
 		printf("philo[%i]->write_lock = %p\n", i, philo[i].write_lock);
 		printf("philo[%i]->dead_lock = %p\n", i, philo[i].dead_lock);
 		printf("philo[%i]->meal_lock = %p\n", i, philo[i].meal_lock);
@@ -70,4 +70,15 @@ void	free_all(t_program *program, pthread_mutex_t *forks)
 		pthread_mutex_destroy(&forks[i]);
 		i++;
 	}
+}
+
+void	print_message(char *str, t_philo *philo, int id)
+{
+	int	time;
+
+	pthread_mutex_lock(philo->write_lock);
+	time = get_current_time() - philo->start_time;
+	if (!dead(philo))
+		printf("%d %d %s\n", time, id, str);
+	pthread_mutex_unlock(philo->write_lock);
 }

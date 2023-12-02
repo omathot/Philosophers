@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:44 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 23:32:09 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 18:59:40 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_philo
 	int				id;
 	int				eating;
 	int				meals_eaten;
-	long long		last_meal;
-	long long		time_to_die;
+	size_t			last_meal;
+	size_t			time_to_die;
 	size_t			time_to_eat;
 	size_t			time_to_sleep;
 	long long		start_time;
@@ -61,5 +61,6 @@ int			ft_usleep(size_t milliseconds);
 int			dead(t_philo *philo);
 void		*observe(void *pointer);
 void		free_all(t_program *program, pthread_mutex_t *forks);
+void		print_message(char *str, t_philo *philo, int id);
 
 #endif

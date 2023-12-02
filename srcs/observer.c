@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 21:49:49 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 23:03:01 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 19:00:48 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	philo_died(t_philo *philo)
 {
 	pthread_mutex_lock(philo->meal_lock);
-	if (get_current_time() - philo->last_meal >= philo->time_to_die && philo->eating == 0)
+	if ((get_current_time() - philo->last_meal) >= (philo->time_to_die) && philo->eating == 0)
 		return (pthread_mutex_unlock(philo->meal_lock), 1);
 	pthread_mutex_unlock(philo->meal_lock);
 	return (0);
@@ -24,18 +24,16 @@ int	philo_died(t_philo *philo)
 int	check_death(t_philo *philo)
 {
 	int	i;
-	int	time;
 
 	i = 0;
 	while (i < philo[0].num_of_philos)
 	{
 		if (philo_died(&philo[i]) == 1)
 		{
-			time = get_current_time();
-			printf("%d %d died\n", time, philo[i].id);
-			pthread_mutex_lock(philo[0].dead_lock);
+			print_message("died", &philo[i], philo[i].id);
+			pthread_mutex_lock(philo[i].dead_lock);
 			*philo->dead = 1;
-			pthread_mutex_unlock(philo[0].dead_lock);
+			pthread_mutex_unlock(philo[i].dead_lock);
 			return (1);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:22:06 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/01 23:30:46 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 18:54:53 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ void	initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program,
 			philo[i].r_fork = &forks[i - 1];
 		i++;
 	}
-	// print_philos(philo);
+	// print_ph
 }
