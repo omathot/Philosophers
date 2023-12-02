@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:56:41 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 22:15:49 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 23:44:04 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	print_philos(t_philo *philo)
 		printf("philo[%i]->time_to_die = %zu\n", i, philo[i].time_to_die);
 		printf("philo[%i]->time_to_eat = %zu\n", i, philo[i].time_to_eat);
 		printf("philo[%i]->time_to_sleep = %zu\n", i, philo[i].time_to_sleep);
-		printf("philo[%i]->num_of_times_to_eat = %d\n", i, philo[i].num_times_to_eat);
+		printf("philo[%i]->num_of_times_to_eat = %d\n", i,
+			philo[i].num_times_to_eat);
 		printf("philo[%i]->start_time = %lld\n", i, philo[i].start_time);
 		printf("philo[%i]->last_meal = %zu\n", i, philo[i].last_meal);
 		printf("philo[%i]->write_lock = %p\n", i, philo[i].write_lock);

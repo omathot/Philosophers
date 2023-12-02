@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:46:27 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 22:10:45 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 23:50:43 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int	create_threads(t_program *program, pthread_mutex_t *forks)
 		free_all(program, forks);
 	while (i < program->philos[0].num_of_philos)
 	{
-		if (pthread_create(&program->philos[i].thread, NULL, &routine, &program->philos[i]) != 0)
+		if (pthread_create(&program->philos[i].thread,
+				NULL, &routine, &program->philos[i]) != 0)
 			free_all(program, forks);
 		i++;
 	}

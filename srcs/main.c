@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:28 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 22:06:46 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/03 00:24:34 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,41 @@ int	are_letters(char *str, int mode)
 	return (0);
 }
 
-void	check_input(int argc, char **argv)
+void	invalid_exit(void)
 {
-	int i;
+	printf("Invalid input\n");
+	exit(EXIT_FAILURE);
+}
+
+int	check_letters(char **argv)
+{
+	int	i;
 
 	i = 1;
+	while (argv[i])
+	{
+		if (i == 5 && argv[5])
+		{
+			if (are_letters(argv[i], 1) == 1)
+			{
+				printf("Invalid input in optional argument\n");
+				exit(EXIT_FAILURE);
+			}
+			else
+				return (1);
+		}
+		else
+		{
+			if (are_letters(argv[i], 0) == 1)
+				invalid_exit();
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	check_input(int argc, char **argv)
+{
 	if (argc != 5 && argc != 6)
 	{
 		printf("wrong number of arguments\n");
@@ -50,28 +80,8 @@ void	check_input(int argc, char **argv)
 		printf("200 philosophers maximum\n");
 		exit(EXIT_FAILURE);
 	}
-	while (argv[i])
-	{
-		if (i == 5 && argv[5])
-		{
-			if (are_letters(argv[i], 1) == 1)
-			{
-				printf("found letters or incorect value, should only be numbers in input, only last input can be 0\n");
-				exit(EXIT_FAILURE);
-			}
-			else
-				return ;
-		}
-		else
-		{
-			if (are_letters(argv[i], 0) == 1)
-			{
-				printf("found letters or incorect value, should only be numbers in input, only last input can be 0\n");
-				exit(EXIT_FAILURE);
-			}
-		}
-		i++;
-	}
+	if (check_letters(argv) == 1)
+		return ;
 }
 
 /*
@@ -80,7 +90,8 @@ void	check_input(int argc, char **argv)
 800 — The time a philosopher will die if he doesn’t eat
 200 — The time it takes a philosopher to eat
 200 — The time it takes a philosopher to sleep
-7 — Number of times all the philosophers need to eat before terminating the program **
+7 — Number of times all the philosophers need to eat
+	before terminating the program **
 */
 int	main(int argc, char **argv)
 {

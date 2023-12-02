@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:22:06 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 21:55:24 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/02 23:43:46 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	init_argv(t_philo *philo, char **argv)
 		philo->num_times_to_eat = -1;
 }
 
-void	initialize_program_n_forks(t_philo *philo, t_program *program, char **argv, pthread_mutex_t *forks)
+void	initialize_program_n_forks(t_philo *philo,
+	t_program *program, char **argv, pthread_mutex_t *forks)
 {
 	int	i;
 
@@ -41,7 +42,8 @@ void	initialize_program_n_forks(t_philo *philo, t_program *program, char **argv,
 	}
 }
 
-void	initializations(t_philo *philo, pthread_mutex_t *forks, t_program *program, char **argv)
+void	initializations(t_philo *philo,
+	pthread_mutex_t *forks, t_program *program, char **argv)
 {
 	int	i;
 
