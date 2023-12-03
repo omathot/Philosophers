@@ -6,7 +6,7 @@
 #    By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 01:41:47 by oscarmathot       #+#    #+#              #
-#    Updated: 2023/12/02 23:30:17 by oscarmathot      ###   ########.fr        #
+#    Updated: 2023/12/03 16:18:42 by oscarmathot      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS	:= $(addprefix $(SUBDIR),$(SRC))
 OBJ 	:= $(SRCS:.c=.o)
 LIBFT_A	:= lib/libft/libft.a
 CMP		:= gcc
-FLAGS 	:= -Werror -Wall -Wextra -pthread -fsanitize=thread -I lib
+FLAGS 	:= -Werror -Wall -Wextra -pthread -I lib
 
 #---------------------------------
 #FORMATTING AND FUN

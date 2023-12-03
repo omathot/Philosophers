@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:56:41 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 23:44:04 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/03 17:24:11 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void	print_message(char *str, t_philo *philo, int id)
 	pthread_mutex_lock(philo->write_lock);
 	time = get_current_time() - philo->start_time;
 	if (!dead(philo))
-		printf("%d %d %s\n", time, id, str);
+		printf("[%d] philo[%d] %s\n", time, id, str);
 	pthread_mutex_unlock(philo->write_lock);
 }
