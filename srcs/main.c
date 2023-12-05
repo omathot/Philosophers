@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:28 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/03 00:24:34 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/05 15:56:16 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ int	check_letters(char **argv)
 
 void	check_input(int argc, char **argv)
 {
+	int	i;
+
+	i = 2;
 	if (argc != 5 && argc != 6)
 	{
 		printf("wrong number of arguments\n");
@@ -79,6 +82,15 @@ void	check_input(int argc, char **argv)
 	{
 		printf("200 philosophers maximum\n");
 		exit(EXIT_FAILURE);
+	}
+	while (argv[i])
+	{
+		if (ft_atoi(argv[i]) < 0)
+		{
+			printf("Max int error\n");
+			exit(EXIT_FAILURE);
+		}
+		i++;
 	}
 	if (check_letters(argv) == 1)
 		return ;

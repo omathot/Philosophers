@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:46:27 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 23:50:43 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/05 15:39:45 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*routine(void *pointer)
 
 	philo = (t_philo *)pointer;
 	if (philo->id % 2 == 0)
-		ft_usleep(1);
+		usleep(2000);
 	while (!dead(philo))
 	{
 		eating(philo);

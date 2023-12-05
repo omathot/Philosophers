@@ -6,7 +6,7 @@
 /*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:56:41 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/03 17:24:11 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/05 15:32:52 by oscarmathot      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_usleep(size_t milliseconds)
 
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
-		usleep(500);
+		usleep(300);
 	return (0);
 }
 
