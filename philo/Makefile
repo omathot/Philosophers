@@ -6,7 +6,7 @@
 #    By: omathot <omathot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 01:41:47 by oscarmathot       #+#    #+#              #
-#    Updated: 2023/12/08 11:54:30 by omathot          ###   ########.fr        #
+#    Updated: 2023/12/08 14:47:15 by omathot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 #VARIABLES
 
 NAME 	:= philo
-SRC 	:= main.c initialize.c threads.c helpers.c routines.c observer.c
+SRC 	:= main.c initialize.c threads.c helpers.c routines.c observer.c input_help.c
 SUBDIR	:= srcs/
 SRCS	:= $(addprefix $(SUBDIR),$(SRC))
 OBJ 	:= $(SRCS:.c=.o)

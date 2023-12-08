@@ -6,11 +6,14 @@
 /*   By: omathot <omathot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:28 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/08 14:24:16 by omathot          ###   ########.fr       */
+/*   Updated: 2023/12/08 14:48:11 by omathot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void	look_non_digits(char **argv);
+int		ft_isdigit(int c);
 
 int	are_letters(char *str, int mode)
 {
@@ -68,25 +71,10 @@ int	check_letters(char **argv)
 	return (0);
 }
 
-int	ft_isdigit(int c)
-{
-	if (48 <= c && c <= 57)
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
-}
-
 void	check_input(int argc, char **argv)
 {
 	int	i;
-	int	j;
 
-	j = 0;
-	i = 1;
 	if (argc != 5 && argc != 6)
 	{
 		printf("wrong number of arguments\n");
@@ -97,19 +85,7 @@ void	check_input(int argc, char **argv)
 		printf("200 philosophers maximum\n");
 		exit(EXIT_FAILURE);
 	}
-	while (argv[i])
-	{
-		while (argv[i][j])
-		{
-			if (!(ft_isdigit(argv[i][j])))
-			{
-				printf("Invalid input\n");
-				exit(EXIT_FAILURE);
-			}
-			j++;
-		}
-		i++;
-	}
+	look_non_digits(argv);
 	i = 1;
 	while (argv[i])
 	{
