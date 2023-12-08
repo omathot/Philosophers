@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routines.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
+/*   By: omathot <omathot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 18:34:13 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 18:59:42 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/08 11:53:12 by omathot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 void	sleepy(t_philo *philo)
 {
 	print_message("is sleeping", philo, philo->id);
-	ft_usleep(philo->time_to_sleep);
+	if (ft_usleep(philo->time_to_sleep, philo) == 1)
+		return ;
 }
 
 void	thinking(t_philo *philo)
 {
 	print_message("is thinking", philo, philo->id);
+}
+
+void	died_while_wait(t_philo *philo)
+{
+	philo->eating = 0;
+	pthread_mutex_unlock(philo->l_fork);
+	pthread_mutex_unlock(philo->r_fork);
 }
 
 void	eating(t_philo *philo)
@@ -29,7 +37,7 @@ void	eating(t_philo *philo)
 	print_message("has taken a fork", philo, philo->id);
 	if (philo->num_of_philos == 1)
 	{
-		ft_usleep(philo->time_to_die);
+		ft_usleep(philo->time_to_sleep, philo);
 		pthread_mutex_unlock(philo->r_fork);
 		return ;
 	}
@@ -41,7 +49,11 @@ void	eating(t_philo *philo)
 	philo->last_meal = get_current_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(philo->meal_lock);
-	ft_usleep(philo->time_to_eat);
+	if (ft_usleep(philo->time_to_eat, philo) == 1)
+	{
+		died_while_wait(philo);
+		return ;
+	}
 	philo->eating = 0;
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+         #
+#    By: omathot <omathot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 01:41:47 by oscarmathot       #+#    #+#              #
-#    Updated: 2023/12/03 16:18:42 by oscarmathot      ###   ########.fr        #
+#    Updated: 2023/12/08 11:54:30 by omathot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,8 @@ SRC 	:= main.c initialize.c threads.c helpers.c routines.c observer.c
 SUBDIR	:= srcs/
 SRCS	:= $(addprefix $(SUBDIR),$(SRC))
 OBJ 	:= $(SRCS:.c=.o)
-LIBFT_A	:= lib/libft/libft.a
 CMP		:= gcc
-FLAGS 	:= -Werror -Wall -Wextra -pthread -I lib
+FLAGS 	:= -Werror -Wall -Wextra -pthread #-g -fsanitize=thread
 
 #---------------------------------
 #FORMATTING AND FUN
@@ -48,32 +47,22 @@ all	: $(NAME)
 		@echo "a\\n"
 		@echo "$(GREEN)Project built successfully !$(RESET)"
 
-$(NAME) : $(OBJ) $(LIBFT_A) philo.h
+$(NAME) : $(OBJ) philo.h
 		@echo "$(CYAN)Creating the executable...$(RESET)"
-		@$(CC) $(FLAGS) $(OBJ) $(LIBFT_A) -o $(NAME)
+		@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o : %.c philo.h
 		@echo "$(CYAN)Compiling...$(RESET) $<"
 		$(call prettycomp, $(CMP) -c $(FLAGS) -o $@ $<)
 
-$(LIBFT_A) : 
-		@echo "$(BLUE)Building libft library...$(RESET)\n"
-		$(call prettycomp, @make -C lib/libft)
-
 clean :
-		@rm -f $(OBJ) ./lib/libft/libft.a
+		@rm -f $(OBJ)
 		@echo "$(GREEN)Cleaned up the artifacts !$(RESET)"
 
 fclean :
 		@rm -f $(NAME) $(OBJ)
 		@echo "$(MAGENTA)Cleaned up executable !$(RESET)"
 
-hardclean : 
-		@make fclean
-		cd ./lib/libft && make clean
-		cd ./lib/libft && make fclean
-		@echo "$(MAGENTA)Cleaned up all built files!$(RESET)"
-
 re : fclean all
 	
-.PHONY : clean fclean re hardclean
+.PHONY : clean fclean re

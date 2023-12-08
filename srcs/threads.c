@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
+/*   By: omathot <omathot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:46:27 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/05 15:39:45 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/06 15:37:14 by omathot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ void	*routine(void *pointer)
 	while (!dead(philo))
 	{
 		eating(philo);
+		if (dead(philo))
+			break ;
 		sleepy(philo);
+		if (dead(philo))
+			break ;
 		thinking(philo);
 	}
 	return (pointer);

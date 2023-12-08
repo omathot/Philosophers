@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
+/*   By: omathot <omathot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:56:41 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/05 15:32:52 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/06 15:37:19 by omathot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,22 @@ void	print_philos(t_philo *philo)
 	}
 }
 
-int	ft_usleep(size_t milliseconds)
+int	ft_usleep(size_t milliseconds, t_philo *philo)
 {
 	size_t	start;
 
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
+	{
+		pthread_mutex_lock(philo->dead_lock);
+		if (*philo->dead == 1)
+		{
+			pthread_mutex_unlock(philo->dead_lock);
+			return (1);
+		}
+		pthread_mutex_unlock(philo->dead_lock);
 		usleep(300);
+	}
 	return (0);
 }
 

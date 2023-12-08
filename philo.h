@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
+/*   By: omathot <omathot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:29:44 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 23:43:18 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/06 15:00:08 by omathot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <sys/time.h>
-# include "lib/libft/libft.h"
 
 typedef struct s_philo
 {
@@ -58,10 +57,11 @@ void		print_philos(t_philo *philo);
 void		sleepy(t_philo *philo);
 void		thinking(t_philo *philo);
 void		eating(t_philo *philo);
-int			ft_usleep(size_t milliseconds);
+int			ft_usleep(size_t milliseconds, t_philo *philo);
 int			dead(t_philo *philo);
 void		*observe(void *pointer);
 void		free_all(t_program *program, pthread_mutex_t *forks);
 void		print_message(char *str, t_philo *philo, int id);
+int			ft_atoi(const char *str);
 
 #endif

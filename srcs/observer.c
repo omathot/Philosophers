@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   observer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oscarmathot <oscarmathot@student.42.fr>    +#+  +:+       +#+        */
+/*   By: omathot <omathot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 21:49:49 by oscarmathot       #+#    #+#             */
-/*   Updated: 2023/12/02 22:18:38 by oscarmathot      ###   ########.fr       */
+/*   Updated: 2023/12/06 15:37:17 by omathot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	res;
+	int	sign;
+
+	i = 1;
+	res = 0;
+	sign = 1;
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '+' || *str == '-')
+		str++;
+	while (*str && i)
+	{
+		if (*str >= '0' && *str <= '9')
+			res = res * 10 + *str - '0';
+		else
+			i = 0;
+		str++;
+	}
+	return (sign * res);
+}
 
 int	philo_died(t_philo *philo, size_t time_to_die)
 {
